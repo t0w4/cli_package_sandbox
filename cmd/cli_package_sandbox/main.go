@@ -24,10 +24,10 @@ func main() {
 	//	help, h  Shows a list of commands or help for one command
 	//
 	//	GLOBAL OPTIONS:
-	//	--name value, -n value  user's name (default: "John Doe") [$USER_NAME]
-	//	--age value, -a value   user's age (default: 10) [$USER_AGE]
-	//	--help, -h              show help
-	//	--version, -v           print the version
+	//	--name NAME, -n NAME  user's NAME (default: "John Doe") [$USER_NAME]
+	//	--age Age, -a Age     user's Age (default: 10) [$USER_AGE]
+	//	--help, -h            show help
+	//	--version, -v         print the version
 	var userName string
 	var userAge int64
 
@@ -38,7 +38,7 @@ func main() {
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
 			Name:        "name, n",
-			Usage:       "user's name",
+			Usage:       "user's `NAME`",
 			EnvVar:      "USER_NAME",
 			Hidden:      false,
 			Value:       "John Doe",
@@ -46,7 +46,7 @@ func main() {
 		},
 		cli.Int64Flag{
 			Name:        "age, a",
-			Usage:       "user's age",
+			Usage:       "user's `Age`",
 			EnvVar:      "USER_AGE",
 			Hidden:      false,
 			Value:       10,
