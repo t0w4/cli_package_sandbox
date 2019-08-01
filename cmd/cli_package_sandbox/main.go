@@ -18,20 +18,54 @@ func main() {
 	//	cli_package_sandbox [global options] command [command options] [arguments...]
 	//
 	//	VERSION:
-	//	0.0.1
+	//	0.0.2
 	//
 	//	COMMANDS:
 	//	help, h  Shows a list of commands or help for one command
 	//
 	//	GLOBAL OPTIONS:
-	//	--help, -h     show help
-	//	--version, -v  print the version
+	//	--name NAME, -n NAME  user's NAME (default: "John Doe") [$USER_NAME, $ USERS_NAME]
+	//	--age Age, -a Age     user's Age (default: 10) [$USER_AGE, $ USERS_AGE]
+	//	--help, -h            show help
+	//	--version, -v         print the version
+	var userName string
+	var userAge int64
+
 	app := cli.NewApp()
 	app.Name = "cli_package_sandbox"
 	app.Usage = "cli package test"
-	app.Version = "0.0.1"
+	app.Version = "0.0.2"
+	app.Flags = []cli.Flag{
+		cli.StringFlag{
+			Name:        "name, n",
+			Usage:       "user's `NAME`",
+			EnvVar:      "USER_NAME, USERS_NAME",
+			Hidden:      false,
+			Value:       "John Doe",
+			Destination: &userName,
+		},
+		cli.Int64Flag{
+			Name:        "age, a",
+			Usage:       "user's `Age`",
+			EnvVar:      "USER_AGE, USERS_AGE",
+			Hidden:      false,
+			Value:       10,
+			Destination: &userAge,
+		},
+	}
 	app.Action = func(c *cli.Context) error {
-		fmt.Println("cli test is done!")
+		fmt.Println(c.Args()) // return args list
+		fmt.Println(c.NArg()) // return args count
+		if userName == "bob" {
+			fmt.Println("You are bob!!!")
+		} else {
+			fmt.Printf("You are not bob. You are %s\n", userName)
+		}
+		if c.Int64("age")%2 == 0 {
+			fmt.Printf("Your age is even[%d]\n", userAge)
+		} else {
+			fmt.Printf("Your age is odd[%d]\n", userAge)
+		}
 		return nil
 	}
 
