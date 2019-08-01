@@ -15,7 +15,7 @@ func main() {
 	//	cli_package_sandbox - cli package test
 	//
 	//USAGE:
-	//	main [global options] command [command options] [arguments...]
+	//	cli_package_sandbox [global options] command [command options] [arguments...]
 	//
 	//	VERSION:
 	//	0.0.1
