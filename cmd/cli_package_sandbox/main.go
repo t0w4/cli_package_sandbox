@@ -18,10 +18,12 @@ func main() {
 	//	cli_package_sandbox [global options] command [command options] [arguments...]
 	//
 	//	VERSION:
-	//	0.0.2
+	//	0.0.3
 	//
 	//	COMMANDS:
-	//	help, h  Shows a list of commands or help for one command
+	//	status, s  print cli args
+	//	user, u    action for user
+	//	help, h    Shows a list of commands or help for one command
 	//
 	//	GLOBAL OPTIONS:
 	//	--name NAME, -n NAME  user's NAME (default: "John Doe") [$USER_NAME, $ USERS_NAME]
@@ -34,7 +36,7 @@ func main() {
 	app := cli.NewApp()
 	app.Name = "cli_package_sandbox"
 	app.Usage = "cli package test"
-	app.Version = "0.0.2"
+	app.Version = "0.0.3"
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
 			Name:        "name, n",
