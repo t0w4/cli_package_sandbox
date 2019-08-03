@@ -90,17 +90,19 @@ func main() {
 		},
 	}
 	app.Action = func(c *cli.Context) error {
-		fmt.Println(c.Args()) // return args list
-		fmt.Println(c.NArg()) // return args count
+		fmt.Printf("argss: %v\n", c.Args())      // return args list
+		fmt.Printf("arg counts: %v\n", c.NArg()) // return args count
+		fmt.Printf("flags: %v\n", app.Flags)
+		fmt.Printf("commands: %v\n", app.Commands)
 		if userName == "bob" {
 			fmt.Println("You are bob!!!")
 		} else {
-			fmt.Printf("You are not bob. You are %s\n", userName)
+			return cli.NewExitError(fmt.Sprintf("You are not bob. You are %s\n", userName), 1)
 		}
 		if c.Int64("age")%2 == 0 {
 			fmt.Printf("Your age is even[%d]\n", userAge)
 		} else {
-			fmt.Printf("Your age is odd[%d]\n", userAge)
+			return cli.NewExitError(fmt.Sprintf("Your age is odd[%d]\n", userAge), 2)
 		}
 		return nil
 	}
