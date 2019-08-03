@@ -53,6 +53,40 @@ func main() {
 			Destination: &userAge,
 		},
 	}
+	app.Commands = []cli.Command{
+		{
+			Name:    "status",
+			Aliases: []string{"s"},
+			Usage:   "print cli args",
+			Action: func(c *cli.Context) error {
+				fmt.Printf("args: %v", os.Args[1:])
+				return nil
+			},
+		},
+		{
+			Name:    "user",
+			Aliases: []string{"u"},
+			Usage:   "action for user",
+			Subcommands: []cli.Command{
+				{
+					Name:  "create",
+					Usage: "add a new user",
+					Action: func(c *cli.Context) error {
+						fmt.Println("user was created")
+						return nil
+					},
+				},
+				{
+					Name:  "delete",
+					Usage: "delete exists user",
+					Action: func(c *cli.Context) error {
+						fmt.Println("user was deleted")
+						return nil
+					},
+				},
+			},
+		},
+	}
 	app.Action = func(c *cli.Context) error {
 		fmt.Println(c.Args()) // return args list
 		fmt.Println(c.NArg()) // return args count
